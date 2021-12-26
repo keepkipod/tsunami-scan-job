@@ -1,0 +1,35 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: daily-scan
+spec:
+  schedule: {{ .Values.cronjob.schedule }}
+  jobTemplate:
+    spec:
+      parallelism: {{ .Values.job.parallelism }}
+      template:
+        metadata:
+          name: {{ include "tsunami-scan-job.name" . }}
+        spec:
+          containers:
+          - name: {{ include "tsunami-scan-job.name" . }}
+            image: {{ .Values.job.image.repository }}
+            imagePullPolicy: {{ .Values.job.image.pullPolicy }}
+            env:
+              - name: JVM_OPTS
+                value: "-Xmx12g -Xms12g -XX:MaxPermSize=4048m"
+              - name: S3_BUCKET
+                value: {{ .Values.job.env.s3Bucket }}
+              - name: AWS_REGION
+                value: {{ .Values.job.env.awsRegion }}
+              - name: AWS_ACCESS_KEY_ID
+                valueFrom:
+                  secretKeyRef:
+                    name: aws-creds
+                    key: AWS_ACCESS_KEY_ID
+              - name: AWS_SECRET_ACCESS_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: aws-creds
+                    key: AWS_SECRET_ACCESS_KEY
+          restartPolicy: OnFailure
