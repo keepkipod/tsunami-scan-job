@@ -39,7 +39,7 @@ If you wish to modify the chart, the files are available on this repository with
 
 ## Start work
 1. Once the CronJob is deployed, you'll have to update the ips.yaml file or the redis queue manually for those addresses to be scanned upon trigger.
-   [aux/feed_queue.py](https://github.com/keepkipod/tsunami-scan-job/aux/feed_queue.py) can be used to speed things up.
+   [aux/feed_queue.py](https://github.com/keepkipod/tsunami-scan-job/blob/ec4c0a6b78eecdb28d5b9108d6ce99229ac293a8/aux/feed_queue.py) can be used to speed things up.
    * Make sure to have NODE_IP & NODE_PORT env vars available & updated once the cronjob is deployed.
    * If ips.yaml path is not passed with arg, the script will assume it is in current working dir.
    * `feed_queue.py -h` for help
