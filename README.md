@@ -14,7 +14,7 @@ It consists of Redis message queue and dockerized tsunami as a worker.
 ## Deploy on Kubernetes using Helm Chart
 Add the repo
 ```
- helm repo add tsunami-scan-job https://keepkipod.github.io/tsuanmi-scan-job/
+ helm repo add tsunami-scan-job https://keepkipod.github.io/tsunami-scan-job/
 ```
 Update helm local repo cache
 ```
