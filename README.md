@@ -31,7 +31,7 @@ The output should be similar to
 ```
 Install the chart
 ```
- helm install tsunami-scan-job/tsunami-scan-job
+ helm install release tsunami-scan-job/tsunami-scan-job
 ```
 
 ## Edit the chart
